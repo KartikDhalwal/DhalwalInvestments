@@ -32,7 +32,7 @@ export default function GetConsultationPage() {
 
       {/* Form Section */}
       <section className="mx-auto max-w-7xl px-6 pb-16">
-        <div className="grid gap-10 lg:grid-cols-12">
+        <div className="grid gap-10 lg:grid-cols-12 mt-10">
           {/* Contact Form */}
           <motion.div
             className="lg:col-span-7"
@@ -63,7 +63,7 @@ export default function GetConsultationPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <Card className="rounded-2xl border border-yellow-100 bg-yellow-50">
+            <Card className="rounded-2xl border border-yellow-100 bg-yellow-50 mt-10">
               <CardHeader>
                 <CardTitle className="text-blue-900">Contact Information</CardTitle>
               </CardHeader>
@@ -74,15 +74,15 @@ export default function GetConsultationPage() {
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="h-5 w-5 text-blue-600" />
-                  <span>contact@dhalwalfinances.com</span>
+                  <span>sureshlic98@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <MapPin className="h-5 w-5 text-blue-600" />
                   <span>Ajmer (Raj.), India</span>
                 </div>
-                <p className="mt-4 text-sm">
+                {/* <p className="mt-4 text-sm">
                   Our team is available Monday to Saturday, 10:00 AM – 6:00 PM. Feel free to drop by or give us a call.
-                </p>
+                </p> */}
               </CardContent>
             </Card>
           </motion.div>

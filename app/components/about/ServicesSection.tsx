@@ -59,20 +59,21 @@ const services = [
 
 export default function ServicesSection() {
   return (
- <section className="relative bg-blue-50 py-20 px-6 overflow-hidden">
+    <section className="relative bg-blue-50 py-20 px-6 overflow-hidden">
       <FloatingBlob color="#004C97" top="20%" left="75%" />
       <FloatingBlob color="#FFD700" top="60%" left="15%" />
-            <motion.div
+      <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="mb-8 flex items-end justify-between"
       >
         <div>
-          <h2 className="text-2xl font-semibold tracking-tight text-blue-900 md:text-3xl">
+          <h2 className="inline-block bg-blue-50 text-blue-700 text-3xl font-semibold w-full px-6 py-4 rounded-lg mb-8 border-l-4 border-blue-500">
             What we do
           </h2>
-          <p className="mt-2 max-w-3xl text-gray-700">
+
+          <p className="mt-2 max-w-3xl font-extrabold text-blue-500">
             Tailored credit solutions and property advisory under one roof.
           </p>
         </div>

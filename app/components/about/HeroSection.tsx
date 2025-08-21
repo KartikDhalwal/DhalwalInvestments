@@ -17,9 +17,12 @@ export default function HeroSection() {
         >
           <FloatingBlob color="#004C97" top="10%" left="5%" />
           <FloatingBlob color="#FFD700" top="40%" left="80%" />
-          <Badge className=" bg-yellow-100 text-blue-700 px-3 py-1 text-lg shadow">
+          {/* <Badge className=" bg-yellow-100 text-blue-700 px-3 py-1 text-lg shadow">
             About Us
-          </Badge>
+          </Badge> */}
+          <h2 className="inline-block bg-blue-50 text-blue-700 text-3xl font-semibold w-full px-6 py-4 rounded-lg mb-8 border-l-4 border-blue-500">
+        About Us
+      </h2>
           <p className="mt-6 max-w-3xl text-base leading-relaxed text-gray-700 md:text-lg">
             We are a client-first financial services firm helping individuals
             and businesses access the right credit solutions— from{" "}

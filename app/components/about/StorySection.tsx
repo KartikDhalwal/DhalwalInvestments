@@ -16,23 +16,24 @@ export default function StorySection() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h3 className="text-xl font-semibold tracking-tight text-blue-900 md:text-2xl">
-            Our Story
-          </h3>
+           <h2 className="inline-block bg-blue-50 text-blue-700 text-3xl font-semibold w-full px-6 py-4 rounded-lg mb-8 border-l-4 border-blue-500">
+         Our Story
+        </h2>
+         
           <p className="mt-3 text-gray-700">
             Dhalwal Investments & Finances was founded in <b>1995</b> on a simple belief: financial
             decisions should be made with clarity, not confusion. Over the years, we’ve
             guided hundreds of families and businesses to secure loans and property
             investments with transparency, trust, and tailored solutions.
           </p>
-          <motion.img
+          {/* <motion.img
             src="/story.jpg"
             alt="Our journey"
             className="mt-6 rounded-2xl shadow-md w-full max-w-lg"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-          />
+          /> */}
         </motion.div>
 
         {/* Why Choose Us */}

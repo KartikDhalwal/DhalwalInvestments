@@ -130,27 +130,15 @@ useEffect(() => {
             </li>
             <li
               className="hover:text-amber-600 transition-colors duration-200 cursor-pointer"
-              onClick={() => handleReplaceRoute("/about")}
-            >
-              About Us
-            </li>
-            <li
-              className="hover:text-amber-600 transition-colors duration-200 cursor-pointer"
-              onClick={() => handleReplaceRoute("/services")}
-            >
-              Services
-            </li>
-            <li
-              className="hover:text-amber-600 transition-colors duration-200 cursor-pointer"
-              onClick={() => handleReplaceRoute("/contact")}
+              onClick={() => handleReplaceRoute("/consultation")}
             >
               Contact Us
             </li>
             <li
               className="hover:text-amber-600 transition-colors duration-200 cursor-pointer"
-              onClick={() => handleReplaceRoute("/blog")}
+              onClick={() => handleReplaceRoute("/calculators")}
             >
-              Blog
+              EMI Calculator
             </li>
           </ul>
         </nav>

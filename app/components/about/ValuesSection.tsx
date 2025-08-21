@@ -32,6 +32,9 @@ export default function ValuesSection() {
     <section className="relative bg-blue-50 py-10 px-10 overflow-hidden -mb-10">
       <FloatingBlob color="#FFD700" top="30%" left="10%" />
       <FloatingBlob color="#004C97" top="70%" left="85%" />{" "}
+      <h2 className="inline-block bg-blue-50 text-blue-700 text-3xl font-semibold w-full px-6 py-4 rounded-lg mb-8 border-l-4 border-blue-500">
+        Our Values
+      </h2>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {values.map(({ icon: Icon, title, desc }, i) => (
           <motion.div
