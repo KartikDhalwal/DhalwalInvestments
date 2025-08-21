@@ -180,18 +180,18 @@ useEffect(() => {
                   Home
                 </li>
                 <li
-                  onClick={() => closeMobileMenu("/about")}
                   className="block py-2 text-lg hover:text-amber-600 transition-colors duration-200"
-                >
-                  About Us
+                 onClick={() => handleReplaceRoute("/consultation")}
+            >
+              Contact Us
                 </li>
                 <li
-                  onClick={() => closeMobileMenu("/services")}
                   className="block py-2 text-lg hover:text-amber-600 transition-colors duration-200"
-                >
-                  Services
+                  onClick={() => handleReplaceRoute("/calculators")}
+            >
+              EMI Calculator
                 </li>
-                <li
+                {/* <li
                   onClick={() => closeMobileMenu("/contact")}
                   className="block py-2 text-lg hover:text-amber-600 transition-colors duration-200"
                 >
@@ -202,7 +202,7 @@ useEffect(() => {
                   className="block py-2 text-lg hover:text-amber-600 transition-colors duration-200"
                 >
                   Blog
-                </li>
+                </li> */}
               </ul>
             </nav>
           </div>
