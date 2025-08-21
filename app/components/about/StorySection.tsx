@@ -20,7 +20,7 @@ export default function StorySection() {
             Our Story
           </h3>
           <p className="mt-3 text-gray-700">
-            Dhalwal Investments & Finances was founded on a simple belief: financial
+            Dhalwal Investments & Finances was founded in <b>1995</b> on a simple belief: financial
             decisions should be made with clarity, not confusion. Over the years, we’ve
             guided hundreds of families and businesses to secure loans and property
             investments with transparency, trust, and tailored solutions.

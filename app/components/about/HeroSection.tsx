@@ -5,7 +5,7 @@ import { FloatingBlob } from "../ui/floatingBlob";
 
 export default function HeroSection() {
   return (
-    <section className="relative bg-blue-50 py-20 px-6 overflow-hidden">
+    <section className="relative bg-blue-50 py-10 px-6 overflow-hidden -mb-20">
       {/* <div className="absolute inset-0 bg-gradient-to-b from-blue-50 via-white to-yellow-50" /> */}
       <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24 flex flex-col lg:flex-row items-center gap-10">
         {/* Text Block */}

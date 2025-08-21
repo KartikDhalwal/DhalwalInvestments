@@ -29,7 +29,7 @@ const values = [
 
 export default function ValuesSection() {
   return (
-    <section className="relative bg-blue-50 py-20 px-6 overflow-hidden">
+    <section className="relative bg-blue-50 py-10 px-10 overflow-hidden -mb-10">
       <FloatingBlob color="#FFD700" top="30%" left="10%" />
       <FloatingBlob color="#004C97" top="70%" left="85%" />{" "}
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

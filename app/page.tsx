@@ -3,45 +3,53 @@ import { motion } from "framer-motion";
 import ServiceCard from "./components/ServiceCard";
 import AboutPage from "./components/about/aboutSection";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    setShow(true);
+  }, []);
   return (
     <>
-       <section
-      className="relative h-screen 
-                 bg-[url('/homesm.png')] sm:bg-[url('/homesm.png')] lg:bg-[url('/home.png')] 
+      <section
+        className="relative h-screen 
+                 bg-[url('/homesm1.png')] sm:bg-[url('/homesm1.png')] lg:bg-[url('/home1.png')] 
                  bg-cover bg-center text-white"
-    >
-      {/* Overlay for readability */}
-      <div className="absolute inset-0 " />
-
-      {/* Company Name at the top */}
-      <motion.h1
-        className="absolute top-36 text-blue-500  w-full text-center text-2xl sm:text-4xl lg:text-5xl font-stretch-expanded z-10"
-        initial={{ opacity: 0, y: -40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
       >
-        Dhalwal Investments &amp; Finances
-      </motion.h1>
+        {/* Overlay for readability */}
+        <div className="absolute inset-0 " />
 
-      {/* Button at the bottom */}
-      <motion.div
-        className="absolute bottom-28 w-full flex justify-center z-10"
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 1 }}
-      >
-        <button
-        onClick={() => router.push("/consultation")}
-          className="px-6 py-2 border-2 border-blue-500 text-blue-500 rounded-lg 
-                     bg-transparent hover:bg-white/20 transition"
+        {/* Company Name at the top */}
+        <motion.h1
+          className="absolute top-40 text-black font-extrabold w-full text-center 
+             text-2xl font-stretch-expanded z-10 
+             lg:hidden"
+          // initial={{ opacity: 0, y: -40 }}
+          // animate={show ? { opacity: 1, y: 0 } : {}}
+          // transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          Get Consultation
-        </button>
-      </motion.div>
-    </section>
+          All Your Financial Need <br /> Solutions under One Roof
+        </motion.h1>
+
+        <motion.div
+          className="absolute bottom-28 w-full flex justify-center z-10"
+          // initial={{ opacity: 0, y: 40 }}
+          // animate={show ? { opacity: 1, y: 0 } : {}}
+          // transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+        >
+          <button
+            onClick={() => router.push("/consultation")}
+            className="px-6 py-2 border-2 border-black font-extrabold text-black rounded-lg 
+             bg-transparent transition-all duration-300 
+             hover:bg-black hover:text-white hover:scale-105 hover:shadow-lg"
+          >
+            Get Consultation
+          </button>
+        </motion.div>
+      </section>
       <AboutPage />
       {/* <section className="py-12 px-4 max-w-7xl mx-auto">
         <h2 className="text-3xl font-semibold text-center mb-8">Our Services</h2>

@@ -93,7 +93,7 @@ useEffect(() => {
               alt="Company Logo"
               width={200}
               height={200}
-              className="lg:-ml-[95%] "
+              className="lg:-ml-[75%] "
               priority
             />
           </Link>

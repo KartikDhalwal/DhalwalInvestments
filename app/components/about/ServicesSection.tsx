@@ -13,7 +13,7 @@ const services = [
       "Pre-assessment to improve approval odds",
       "Rate comparison across lenders",
     ],
-    img: "/services/home-loan.jpg",
+    img: "/homeLoan.png",
   },
   {
     icon: Landmark,
@@ -23,7 +23,7 @@ const services = [
       "Flexible tenure with competitive interest",
       "Cash-flow aligned EMI planning",
     ],
-    img: "/services/mortgage.jpg",
+    img: "/mortgageLoans.png",
   },
   {
     icon: HandCoins,
@@ -33,28 +33,28 @@ const services = [
       "Quick screening and documentation",
       "Minimal disruption to your routine",
     ],
-    img: "/services/personal-loan.jpg",
+    img: "/personalLoans.png",
   },
-  {
-    icon: FileCheck2,
-    title: "Loans Against Property",
-    points: [
-      "Structured against owned property value",
-      "End-to-end support till disbursal",
-      "Options for salaried & self-employed",
-    ],
-    img: "/services/loan-against.jpg",
-  },
-  {
-    icon: Building2,
-    title: "Property Dealing",
-    points: [
-      "Buy, sell, or invest with due diligence",
-      "Title and documentation guidance",
-      "Home loan tie-ins for faster closure",
-    ],
-    img: "/services/property.jpg",
-  },
+  // {
+  //   icon: FileCheck2,
+  //   title: "Loans Against Property",
+  //   points: [
+  //     "Structured against owned property value",
+  //     "End-to-end support till disbursal",
+  //     "Options for salaried & self-employed",
+  //   ],
+  //   img: "/services/loan-against.jpg",
+  // },
+  // {
+  //   icon: Building2,
+  //   title: "Property Dealing",
+  //   points: [
+  //     "Buy, sell, or invest with due diligence",
+  //     "Title and documentation guidance",
+  //     "Home loan tie-ins for faster closure",
+  //   ],
+  //   img: "/services/property.jpg",
+  // },
 ];
 
 export default function ServicesSection() {
