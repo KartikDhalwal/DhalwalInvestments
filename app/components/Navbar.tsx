@@ -2,212 +2,156 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { FaBars, FaTimes } from "react-icons/fa";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
+
+const NAV_LINKS = [
+  { label: "Home", href: "/" },
+  { label: "Insurance", href: "/insurance" },
+  { label: "EMI Calculator", href: "/calculators" },
+];
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState<boolean>(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
-  const [textColour, setTextColour] = useState<boolean>(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
-  const handleReplaceRoute = (path: string) => {
-    router.replace(path);
-  };
   useEffect(() => {
-    const segments = pathname.split("/").filter(Boolean);
-    if (segments.length > 0) {
-      setTextColour(true);
-    }
-  }, [pathname]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-    // Disable body scroll when menu is open
-    if (!mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-  };
-
-  const closeMobileMenu = (path: string) => {
-    setMobileMenuOpen(false);
-    document.body.style.overflow = "";
-    handleReplaceRoute(path);
-  };
-
-  // Close menu when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (
-        mobileMenuOpen &&
-        !target.closest(".mobile-menu") &&
-        !target.closest(".menu-toggle")
-      ) {
-        closeMobileMenu("");
-      }
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
     };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [mobileMenuOpen]);
-useEffect(() => {
-  const handleScroll = () => {
-    if (window.scrollY > 0) {
-      setScrolled(true);
-    } else {
-      setScrolled(false);
-    }
+
+  const navigate = (href: string) => {
+    setMobileMenuOpen(false);
+    router.push(href);
   };
 
-  window.addEventListener("scroll", handleScroll);
-
-  return () => {
-    window.removeEventListener("scroll", handleScroll);
-  };
-}, []);
   return (
-    <header
-      className={`fixed top-0 left-0 w-full h-[70px] z-50 transition-all duration-300 ${
-        scrolled ? "bg-white  shadow-lg" : ""
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="flex h-[8%]">
-          <Link href="/" className="cursor-pointer">
-            <Image
-              src="/DhalwalInvestmentsLogo.png"
-              alt="Company Logo"
-              width={200}
-              height={200}
-              className="lg:-ml-[75%] "
-              priority
-            />
-          </Link>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div
-          className="md:hidden text-2xl cursor-pointer menu-toggle"
-          onClick={toggleMobileMenu}
-          role="button"
-          aria-label="Toggle Menu"
-        >
-          {mobileMenuOpen ? (
-            <FaTimes className="text-gray-800" />
-          ) : (
-            <FaBars
-              className="text-black"
-            />
-          )}
-        </div>
+    <header className="fixed top-0 left-0 z-50 w-full">
+      <div
+        className={`transition-all duration-300 ${
+          scrolled
+            ? "bg-white/90 shadow-[0_1px_0_0_rgba(11,15,25,0.06)] backdrop-blur-md"
+            : "bg-white/60 backdrop-blur-sm"
+        }`}
+      >
+      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6">
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/DhalwalInvestmentsLogo.png"
+            alt="Dhalwal Investments & Finances"
+            width={500}
+            height={78}
+            className="h-12 w-auto object-contain sm:h-14"
+            priority
+          />
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
-          <ul
-            className={`flex items-center -py-10 gap-6 md:gap-8 ${
-              !scrolled && !textColour ? "text-black" : "text-black"
-            }`}
-          >
-            <li
-              className="hover:text-amber-600 transition-colors duration-200 cursor-pointer"
-              onClick={() => handleReplaceRoute("/")}
-            >
-              Home
-            </li>
-            <li
-              className="hover:text-amber-600 transition-colors duration-200 cursor-pointer"
-              onClick={() => handleReplaceRoute("/consultation")}
-            >
-              Contact Us
-            </li>
-            <li
-              className="hover:text-amber-600 transition-colors duration-200 cursor-pointer"
-              onClick={() => handleReplaceRoute("/calculators")}
-            >
-              EMI Calculator
-            </li>
+          <ul className="flex items-center gap-8">
+            {NAV_LINKS.map(({ label, href }) => {
+              const active = pathname === href;
+              return (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className={`group relative py-2 text-sm font-medium transition-colors ${
+                      active ? "text-navy-900" : "text-ink-muted hover:text-navy-900"
+                    }`}
+                  >
+                    {label}
+                    <span
+                      className={`absolute -bottom-0.5 left-0 h-0.5 bg-gold-500 transition-all duration-300 ${
+                        active ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
+                    />
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
-        {/* Mobile Side Drawer */}
-        <div
-          className={`fixed inset-0 z-40 transition-opacity duration-300 ${
-            mobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-        >
-          {/* Overlay */}
-          <div
-            className="absolute inset-0 bg-black bg-opacity-50"
-            onClick={() => closeMobileMenu("")}
-          />
-
-          {/* Drawer Content */}
-          <div
-            className={`absolute top-0 right-0 h-full w-4/5 max-w-sm bg-white shadow-xl transform transition-transform duration-300 ease-in-out mobile-menu ${
-              mobileMenuOpen ? "translate-x-0" : "translate-x-full"
-            }`}
+        <div className="hidden md:block">
+          <button
+            onClick={() => navigate("/consultation")}
+            className="rounded-full bg-navy-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-navy-800 hover:shadow-md hover:-translate-y-0.5"
           >
-            <div className="p-4 flex justify-end">
-              <button
-                onClick={() => closeMobileMenu("")}
-                className="text-gray-800 hover:text-amber-600 transition-colors"
-                aria-label="Close menu"
-              >
-                <FaTimes size={24} />
-              </button>
-            </div>
-
-            <nav className="p-6">
-              <ul className="flex flex-col gap-6 text-gray-800">
-                <li
-                  onClick={() => closeMobileMenu("/")}
-                  className="block py-2 text-lg hover:text-amber-600 transition-colors duration-200"
-                >
-                  Home
-                </li>
-                <li
-                  className="block py-2 text-lg hover:text-amber-600 transition-colors duration-200"
-                 onClick={() => handleReplaceRoute("/consultation")}
-            >
-              Contact Us
-                </li>
-                <li
-                  className="block py-2 text-lg hover:text-amber-600 transition-colors duration-200"
-                  onClick={() => handleReplaceRoute("/calculators")}
-            >
-              EMI Calculator
-                </li>
-                {/* <li
-                  onClick={() => closeMobileMenu("/contact")}
-                  className="block py-2 text-lg hover:text-amber-600 transition-colors duration-200"
-                >
-                  Contact Us
-                </li>
-                <li
-                  onClick={() => closeMobileMenu("/blog")}
-                  className="block py-2 text-lg hover:text-amber-600 transition-colors duration-200"
-                >
-                  Blog
-                </li> */}
-              </ul>
-            </nav>
-          </div>
+            Get Consultation
+          </button>
         </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="menu-toggle text-navy-900 md:hidden"
+          onClick={() => setMobileMenuOpen((v) => !v)}
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+        </button>
       </div>
+      </div>
+
+      {/* Mobile Drawer */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            <motion.div
+              className="fixed inset-0 z-40 bg-navy-950/40 md:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <motion.div
+              className="mobile-menu fixed right-0 top-0 z-50 h-full w-4/5 max-w-sm bg-white shadow-2xl md:hidden"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.3, ease: "easeOut" }}
+            >
+              <div className="flex justify-end p-5">
+                <button onClick={() => setMobileMenuOpen(false)} aria-label="Close menu">
+                  <X size={24} className="text-navy-900" />
+                </button>
+              </div>
+              <nav className="px-6">
+                <ul className="flex flex-col gap-1">
+                  {NAV_LINKS.map(({ label, href }) => (
+                    <li key={href}>
+                      <button
+                        onClick={() => navigate(href)}
+                        className="block w-full border-b border-surface py-3 text-left text-lg font-medium text-navy-900"
+                      >
+                        {label}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  onClick={() => navigate("/consultation")}
+                  className="mt-6 w-full rounded-full bg-navy-900 px-5 py-3 text-sm font-semibold text-white"
+                >
+                  Get Consultation
+                </button>
+              </nav>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

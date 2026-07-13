@@ -1,8 +1,9 @@
 "use client";
+
 import { motion } from "framer-motion";
-import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
-import { Home, Landmark, HandCoins, FileCheck2, Building2 } from "lucide-react";
-import { FloatingBlob } from "../ui/floatingBlob";
+import { Home, Landmark, HandCoins, ShieldCheck } from "lucide-react";
+import { SectionHeading } from "../ui/SectionHeading";
+import { staggerContainer, fadeUp, viewportOnce } from "@/app/lib/motion";
 
 const services = [
   {
@@ -35,78 +36,67 @@ const services = [
     ],
     img: "/personalLoans.png",
   },
-  // {
-  //   icon: FileCheck2,
-  //   title: "Loans Against Property",
-  //   points: [
-  //     "Structured against owned property value",
-  //     "End-to-end support till disbursal",
-  //     "Options for salaried & self-employed",
-  //   ],
-  //   img: "/services/loan-against.jpg",
-  // },
-  // {
-  //   icon: Building2,
-  //   title: "Property Dealing",
-  //   points: [
-  //     "Buy, sell, or invest with due diligence",
-  //     "Title and documentation guidance",
-  //     "Home loan tie-ins for faster closure",
-  //   ],
-  //   img: "/services/property.jpg",
-  // },
+  {
+    icon: ShieldCheck,
+    title: "Insurance",
+    points: [
+      "Life, term & health cover from trusted insurers",
+      "Cover matched to your income & dependents",
+      "Support at claim time, not just at sign-up",
+    ],
+    img: "/landing1.jpg",
+  },
 ];
 
 export default function ServicesSection() {
   return (
-    <section className="relative bg-blue-50 py-20 px-6 overflow-hidden">
-      <FloatingBlob color="#004C97" top="20%" left="75%" />
-      <FloatingBlob color="#FFD700" top="60%" left="15%" />
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="mb-8 flex items-end justify-between"
-      >
-        <div>
-          <h2 className="inline-block bg-blue-50 text-blue-700 text-3xl font-semibold w-full px-6 py-4 rounded-lg mb-8 border-l-4 border-blue-500">
-            What we do
-          </h2>
+    <section className="relative bg-white py-20 px-6">
+      <div className="mx-auto max-w-7xl">
+        <SectionHeading
+          eyebrow="What we do"
+          title="Tailored credit & insurance solutions"
+          subtitle="Everything under one roof, backed by a network of lending and insurance partners."
+        />
 
-          <p className="mt-2 max-w-3xl font-extrabold text-blue-500">
-            Tailored credit solutions and property advisory under one roof.
-          </p>
-        </div>
-      </motion.div>
-
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {services.map(({ icon: Icon, title, points, img }, i) => (
-          <motion.div
-            key={title}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-          >
-            <Card className="rounded-2xl border border-yellow-100 hover:shadow-md transition overflow-hidden">
-              <img src={img} alt={title} className="h-40 w-full object-cover" />
-              <CardHeader className="flex flex-row items-center gap-3 pb-2">
-                <div className="rounded-2xl border p-2 bg-blue-50">
-                  <Icon className="h-5 w-5 text-blue-600" />
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
+          variants={staggerContainer(0.1)}
+          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {services.map(({ icon: Icon, title, points, img }) => (
+            <motion.div
+              key={title}
+              variants={fadeUp}
+              className="group relative overflow-hidden rounded-2xl border border-navy-900/8 bg-white shadow-sm transition-shadow duration-300 hover:shadow-xl hover:shadow-navy-900/10"
+            >
+              <div className="relative h-36 w-full overflow-hidden">
+                <img
+                  src={img}
+                  alt={title}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-navy-950/70 via-navy-950/10 to-transparent" />
+                <div className="absolute bottom-3 left-4 flex items-center gap-2">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/90">
+                    <Icon className="h-4 w-4 text-navy-900" />
+                  </div>
+                  <span className="text-sm font-semibold text-white">{title}</span>
                 </div>
-                <CardTitle className="text-base md:text-lg text-blue-900">
-                  {title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <ul className="list-inside list-disc space-y-1 text-sm text-gray-700">
-                  {points.map((p) => (
-                    <li key={p}>{p}</li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
+              </div>
+
+              <ul className="space-y-1.5 p-5 text-sm text-ink-muted">
+                {points.map((p) => (
+                  <li key={p} className="flex gap-2">
+                    <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-gold-500" />
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

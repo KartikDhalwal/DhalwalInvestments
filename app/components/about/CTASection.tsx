@@ -1,54 +1,52 @@
 "use client";
+
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Phone, MapPin } from "lucide-react";
+import { Phone, MapPin, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { FloatingBlob } from "../ui/floatingBlob";
+import { fadeUp, viewportOnce } from "@/app/lib/motion";
 
 export default function CTASection() {
   const router = useRouter();
 
   return (
-    <section className="relative bg-blue-900 text-white py-20 px-6 overflow-hidden">
-      <FloatingBlob color="#FFD700" top="10%" left="20%" />
-      <FloatingBlob color="#004C97" top="60%" left="75%" />{" "}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-50 via-yellow-50 to-blue-100" />
-      <div className="mx-auto max-w-7xl px-6 py-12 lg:py-16">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.97 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="grid items-center gap-8 rounded-2xl border border-blue-100 bg-white/70 p-8 backdrop-blur-md md:grid-cols-2 shadow-lg"
-        >
-          {/* Left Side */}
-          <div>
-            <h4 className="text-xl font-semibold tracking-tight text-blue-900">
-              Let’s plan your next step
-            </h4>
-            <p className="mt-2 text-gray-700">
-              Speak to a loan specialist for a free assessment.
-            </p>
-            <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-blue-700">
-              <span className="inline-flex items-center gap-2">
-                <Phone className="h-4 w-4" /> +91-9828049021
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <MapPin className="h-4 w-4" /> Ajmer(Raj.), India
-              </span>
-            </div>
-          </div>
+    <section className="relative overflow-hidden bg-navy-950 py-20 px-6">
+      <motion.div
+        className="absolute -top-1/2 left-1/2 h-160 w-160 -translate-x-1/2 rounded-full bg-navy-700/40 blur-3xl"
+        animate={{ scale: [1, 1.08, 1], opacity: [0.5, 0.8, 0.5] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-64 w-64 translate-x-1/4 translate-y-1/4 rounded-full bg-gold-500/10 blur-3xl" />
 
-          {/* Right Side */}
-          <div className="flex items-center justify-start md:justify-end">
-            <Button
-              onClick={() => router.push("/consultation")}
-              className="rounded-2xl px-6 py-6 text-base bg-blue-600 hover:bg-blue-700 text-white shadow"
-            >
-              Book a free consultation
-            </Button>
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={viewportOnce}
+        variants={fadeUp}
+        className="relative mx-auto flex max-w-6xl flex-col items-center gap-8 rounded-3xl border border-white/10 bg-white/5 p-10 text-center backdrop-blur-md md:flex-row md:justify-between md:text-left"
+      >
+        <div>
+          <h4 className="text-2xl font-semibold tracking-tight text-white md:text-3xl">
+            Let&apos;s plan your next step
+          </h4>
+          <p className="mt-2 text-white/60">Speak to a loan &amp; insurance specialist for a free assessment.</p>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm text-white/70 md:justify-start">
+            <span className="inline-flex items-center gap-2">
+              <Phone className="h-4 w-4 text-gold-400" /> +91-9828049021
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <MapPin className="h-4 w-4 text-gold-400" /> Ajmer (Raj.), India
+            </span>
           </div>
-        </motion.div>
-      </div>
+        </div>
+
+        <button
+          onClick={() => router.push("/consultation")}
+          className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-gold-500 px-7 py-3.5 text-sm font-semibold text-navy-950 shadow-lg shadow-gold-500/20 transition-all hover:-translate-y-0.5 hover:bg-gold-400 hover:shadow-xl"
+        >
+          Book a free consultation
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </button>
+      </motion.div>
     </section>
   );
 }
