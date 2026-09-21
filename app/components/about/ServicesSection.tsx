@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Home, Landmark, HandCoins, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import { Home, Landmark, HandCoins, ShieldCheck, ArrowRight } from "lucide-react";
 import { SectionHeading } from "../ui/SectionHeading";
 import { staggerContainer, fadeUp, viewportOnce } from "@/app/lib/motion";
 
@@ -15,6 +16,7 @@ const services = [
       "Rate comparison across lenders",
     ],
     img: "/homeLoan.png",
+    href: "/loans/home-loan",
   },
   {
     icon: Landmark,
@@ -25,6 +27,7 @@ const services = [
       "Cash-flow aligned EMI planning",
     ],
     img: "/mortgageLoans.png",
+    href: "/loans/mortgage-loan",
   },
   {
     icon: HandCoins,
@@ -35,6 +38,7 @@ const services = [
       "Minimal disruption to your routine",
     ],
     img: "/personalLoans.png",
+    href: "/loans/personal-loan",
   },
   {
     icon: ShieldCheck,
@@ -45,6 +49,7 @@ const services = [
       "Support at claim time, not just at sign-up",
     ],
     img: "/landing1.jpg",
+    href: "/insurance",
   },
 ];
 
@@ -65,35 +70,41 @@ export default function ServicesSection() {
           variants={staggerContainer(0.1)}
           className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
         >
-          {services.map(({ icon: Icon, title, points, img }) => (
-            <motion.div
-              key={title}
-              variants={fadeUp}
-              className="group relative overflow-hidden rounded-2xl border border-navy-900/8 bg-white shadow-sm transition-shadow duration-300 hover:shadow-xl hover:shadow-navy-900/10"
-            >
-              <div className="relative h-36 w-full overflow-hidden">
-                <img
-                  src={img}
-                  alt={title}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-navy-950/70 via-navy-950/10 to-transparent" />
-                <div className="absolute bottom-3 left-4 flex items-center gap-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/90">
-                    <Icon className="h-4 w-4 text-navy-900" />
+          {services.map(({ icon: Icon, title, points, img, href }) => (
+            <motion.div key={title} variants={fadeUp}>
+              <Link
+                href={href}
+                className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-navy-900/8 bg-white shadow-sm transition-shadow duration-300 hover:shadow-xl hover:shadow-navy-900/10"
+              >
+                <div className="relative h-36 w-full overflow-hidden">
+                  <img
+                    src={img}
+                    alt={title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-navy-950/70 via-navy-950/10 to-transparent" />
+                  <div className="absolute bottom-3 left-4 flex items-center gap-2">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/90">
+                      <Icon className="h-4 w-4 text-navy-900" />
+                    </div>
+                    <span className="text-sm font-semibold text-white">{title}</span>
                   </div>
-                  <span className="text-sm font-semibold text-white">{title}</span>
                 </div>
-              </div>
 
-              <ul className="space-y-1.5 p-5 text-sm text-ink-muted">
-                {points.map((p) => (
-                  <li key={p} className="flex gap-2">
-                    <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-gold-500" />
-                    {p}
-                  </li>
-                ))}
-              </ul>
+                <ul className="flex-1 space-y-1.5 p-5 text-sm text-ink-muted">
+                  {points.map((p) => (
+                    <li key={p} className="flex gap-2">
+                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-gold-500" />
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+
+                <span className="flex items-center gap-2 border-t border-navy-900/8 px-5 py-3 text-xs font-semibold text-navy-900">
+                  Learn more
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
             </motion.div>
           ))}
         </motion.div>

@@ -54,6 +54,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/faq" className="transition hover:text-white">
+                  FAQ
+                </Link>
+              </li>
+              <li>
                 <Link href="/consultation" className="transition hover:text-white">
                   Get Consultation
                 </Link>
@@ -67,10 +72,26 @@ export default function Footer() {
               Services
             </h4>
             <ul className="mt-4 space-y-2 text-sm">
-              <li>Home Loans</li>
-              <li>Mortgage Loans</li>
-              <li>Personal Loans</li>
-              <li>Life &amp; Health Insurance</li>
+              <li>
+                <Link href="/loans/home-loan" className="transition hover:text-white">
+                  Home Loans
+                </Link>
+              </li>
+              <li>
+                <Link href="/loans/mortgage-loan" className="transition hover:text-white">
+                  Mortgage Loans
+                </Link>
+              </li>
+              <li>
+                <Link href="/loans/personal-loan" className="transition hover:text-white">
+                  Personal Loans
+                </Link>
+              </li>
+              <li>
+                <Link href="/insurance" className="transition hover:text-white">
+                  Life &amp; Health Insurance
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -106,7 +127,11 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 border-t border-white/10 pt-8 text-center text-xs text-white/50">
-          <p>&copy; 1995 Dhalwal Investments &amp; Finances. All rights reserved.</p>
+          <p>
+            GST: [Add GST Number] &middot; DSA Registration: [Add DSA Reg. No.] &middot; Insurance
+            Agent License (IRDAI): [Add License No.]
+          </p>
+          <p className="mt-2">&copy; 1995 Dhalwal Investments &amp; Finances. All rights reserved.</p>
           <p className="mt-1">
             Developed and maintained by{" "}
             <span className="font-medium text-gold-400">Kartik Dhalwal (+91-9828719021)</span>

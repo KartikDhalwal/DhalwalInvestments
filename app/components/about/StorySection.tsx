@@ -13,6 +13,25 @@ const reasons = [
   "Dedicated support",
 ];
 
+const MILESTONES = [
+  {
+    year: "1995",
+    text: "Founded in Ajmer with a single focus: help local families get fair, well-explained access to credit and insurance.",
+  },
+  {
+    year: "2000s",
+    text: "Grew into an authorized DSA across multiple nationalized banks, private banks, and NBFCs as lending in India formalized.",
+  },
+  {
+    year: "2010s",
+    text: "Expanded into life, term, and health insurance advisory, taking a full-picture view of each client's financial protection.",
+  },
+  {
+    year: "Today",
+    text: "A trusted, multi-generational point of contact for loans and insurance across Ajmer and the wider Rajasthan region.",
+  },
+];
+
 export default function StorySection() {
   return (
     <section className="relative overflow-hidden bg-surface py-20 px-6">
@@ -28,20 +47,33 @@ export default function StorySection() {
         >
           <SectionHeading eyebrow="Our story" title="Three decades of trusted guidance" />
 
-          <div className="flex gap-5">
-            <div className="flex flex-col items-center">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy-900 text-sm font-bold text-white">
-                1995
-              </span>
-              <span className="mt-2 w-px flex-1 bg-navy-900/15" />
-            </div>
-            <p className="pb-2 text-base leading-relaxed text-ink-muted">
-              Dhalwal Investments &amp; Finances was founded on a simple belief: financial
-              decisions should be made with clarity, not confusion. Over the years, we&apos;ve
-              guided hundreds of families and businesses to secure loans, insurance, and property
-              investments with transparency, trust, and tailored solutions.
-            </p>
-          </div>
+          <p className="mb-8 text-base leading-relaxed text-ink-muted md:text-lg">
+            Dhalwal Investments &amp; Finances was founded on a simple belief: financial
+            decisions should be made with clarity, not confusion. Over the years, we&apos;ve
+            guided families and businesses across Ajmer to secure loans, insurance, and property
+            investments with transparency, trust, and tailored solutions — not one-size-fits-all
+            sales pitches.
+          </p>
+
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={viewportOnce}
+            variants={staggerContainer(0.1)}
+            className="space-y-6"
+          >
+            {MILESTONES.map((m, i) => (
+              <motion.div key={m.year} variants={fadeUp} className="flex gap-5">
+                <div className="flex flex-col items-center">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy-900 text-xs font-bold text-white">
+                    {m.year}
+                  </span>
+                  {i < MILESTONES.length - 1 && <span className="mt-2 w-px flex-1 bg-navy-900/15" />}
+                </div>
+                <p className="pb-2 text-sm leading-relaxed text-ink-muted md:text-base">{m.text}</p>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
 
         {/* Why Choose Us */}
